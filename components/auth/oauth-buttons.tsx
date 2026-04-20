@@ -12,7 +12,7 @@ const providers: { id: OAuthProvider; label: string; icon: React.ReactNode }[] =
   { id: 'github', label: 'GitHub', icon: <FaGithub className="w-5 h-5" /> },
   { id: 'discord', label: 'Discord', icon: <FaDiscord className="w-5 h-5 text-[#5865F2]" /> },
   { id: 'facebook', label: 'Facebook', icon: <FaFacebookF className="w-4 h-4 text-[#1877F2]" /> },
-  { id: 'x', label: 'X', icon: <FaXTwitter className="w-4 h-4 text-white" /> },
+  { id: 'twitter', label: 'X', icon: <FaXTwitter className="w-4 h-4 text-white" /> },
   { id: 'twitch', label: 'Twitch', icon: <FaTwitch className="w-4 h-4 text-[#9146FF]" /> },
 ]
 
@@ -43,9 +43,7 @@ export function OAuthButtons({ returnTo, mode = 'login' }: OAuthButtonsProps) {
       })
 
       if (error) throw error
-      if (data.url) {
-        window.location.href = data.url
-      }
+      if (data.url) window.location.assign(data.url)
     } catch (err) {
       console.error(`OAuth ${provider} error:`, err)
       setLoadingProvider(null)

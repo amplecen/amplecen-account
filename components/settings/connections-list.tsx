@@ -13,12 +13,12 @@ const providerMeta: Record<string, { label: string; icon: React.ReactNode; color
   github: { label: 'GitHub', icon: <FaGithub className="w-5 h-5" />, color: 'text-warm-white' },
   discord: { label: 'Discord', icon: <FaDiscord className="w-5 h-5 text-[#5865F2]" />, color: 'text-[#5865F2]' },
   facebook: { label: 'Facebook', icon: <FaFacebookF className="w-4 h-4 text-[#1877F2]" />, color: 'text-[#1877F2]' },
-  x: { label: 'X', icon: <FaXTwitter className="w-4 h-4 text-white" />, color: 'text-white' },
+  twitter: { label: 'X', icon: <FaXTwitter className="w-4 h-4 text-white" />, color: 'text-white' },
   twitch: { label: 'Twitch', icon: <FaTwitch className="w-4 h-4 text-[#9146FF]" />, color: 'text-[#9146FF]' },
   email: { label: 'Email', icon: <span className="text-lg">📧</span>, color: 'text-warm-white' },
 }
 
-const linkableProviders: OAuthProvider[] = ['google', 'github', 'discord', 'facebook', 'x', 'twitch']
+const linkableProviders: OAuthProvider[] = ['google', 'github', 'discord', 'facebook', 'twitter', 'twitch']
 
 interface ConnectionsListProps {
   identities: LinkedIdentity[]
