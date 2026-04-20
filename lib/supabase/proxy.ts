@@ -1,14 +1,10 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
-import { resolveCookieDomain } from './cookie-domain'
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request })
 
-  const cookieDomain = resolveCookieDomain(
-    request.nextUrl.hostname,
-    process.env.COOKIE_DOMAIN || process.env.NEXT_PUBLIC_COOKIE_DOMAIN
-  )
+  const cookieDomain = process.env.COOKIE_DOMAIN
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -24,14 +20,14 @@ export async function updateSession(request: NextRequest) {
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, {
               ...options,
-                ...(cookieDomain && {
-                  domain: cookieDomain,
-                  path: '/',
-                  sameSite: 'lax' as const,
-                  secure: request.nextUrl.protocol === 'https:',
-                }),
-              })
-            )
+              ...(cookieDomain && {
+                domain: cookieDomain,
+                path: '/',
+                sameSite: 'lax' as const,
+                secure: true,
+              }),
+            })
+          )
         },
       },
     }

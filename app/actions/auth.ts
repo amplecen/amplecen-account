@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache'
 import { headers } from 'next/headers'
 
 // ─── Types ────────────────────────────────────────────────────────
-export type OAuthProvider = 'google' | 'github' | 'discord' | 'apple' | 'facebook' | 'twitter' | 'twitch'
+export type OAuthProvider = 'google' | 'github' | 'discord' | 'apple' | 'facebook' | 'x' | 'twitch'
 
 // ─── URL Helper ───────────────────────────────────────────────────
 async function getBaseUrl(): Promise<string> {
