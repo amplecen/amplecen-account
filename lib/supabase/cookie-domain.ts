@@ -1,7 +1,30 @@
 function sanitizeExplicitDomain(domain?: string): string | undefined {
   if (!domain) return undefined
   const trimmed = domain.trim()
-  return trimmed.length > 0 ? trimmed : undefined
+  if (trimmed.length === 0) return undefined
+
+  // Allow URL-like env values (e.g. https://accounts.amplecen.com)
+  // by extracting the hostname.
+  const normalizedInput = trimmed.replace(/\/+$/, '')
+  const withProtocol = /^https?:\/\//i.test(normalizedInput)
+    ? normalizedInput
+    : `https://${normalizedInput}`
+
+  try {
+    const hostname = new URL(withProtocol).hostname.toLowerCase()
+    if (hostname === 'amplecen.com' || hostname.endsWith('.amplecen.com')) {
+      return '.amplecen.com'
+    }
+    return hostname
+  } catch {
+    // Fallback to plain domain-like strings without protocol.
+    const plain = normalizedInput.toLowerCase().replace(/:\d+$/, '')
+    if (!plain) return undefined
+    if (plain === 'amplecen.com' || plain.endsWith('.amplecen.com')) {
+      return '.amplecen.com'
+    }
+    return plain
+  }
 }
 
 function normalizeHostname(hostname: string): string {
