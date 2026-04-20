@@ -7,6 +7,10 @@ function normalizeHostname(hostname: string): string {
   return hostname.trim().toLowerCase().replace(/:\d+$/, '')
 }
 
+function stripProtocolAndPath(input: string): string {
+  return input.replace(/^https?:\/\//i, '').split('/')[0]
+}
+
 function sanitizeExplicitDomain(domain?: string): string | undefined {
   if (!domain) return undefined
   const trimmed = domain.trim()
@@ -20,14 +24,14 @@ function sanitizeExplicitDomain(domain?: string): string | undefined {
     : `https://${trimmedWithoutTrailingSlash}`
 
   try {
-    const hostname = normalizeHostname(new URL(withProtocol).hostname)
+    const hostname = new URL(withProtocol).hostname.toLowerCase()
     if (isAmplecenHostname(hostname)) {
       return '.amplecen.com'
     }
     return hostname
   } catch {
     // Fallback to plain domain-like strings without protocol.
-    const plain = normalizeHostname(trimmedWithoutTrailingSlash)
+    const plain = normalizeHostname(stripProtocolAndPath(trimmedWithoutTrailingSlash))
     if (!plain) return undefined
     if (isAmplecenHostname(plain)) {
       return '.amplecen.com'
