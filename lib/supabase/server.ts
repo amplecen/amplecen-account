@@ -9,6 +9,7 @@ export async function createClient() {
     try {
       appHostname = new URL(process.env.NEXT_PUBLIC_APP_URL).hostname
     } catch {
+      // Ignore invalid app URL and fall back to host-only cookies.
       appHostname = ''
     }
   }
