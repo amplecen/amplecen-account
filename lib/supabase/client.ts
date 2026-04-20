@@ -1,7 +1,11 @@
 import { createBrowserClient } from '@supabase/ssr'
+import { resolveCookieDomain } from './cookie-domain'
 
 export function createClient() {
-  const cookieDomain = process.env.NEXT_PUBLIC_COOKIE_DOMAIN // '.amplecen.com' in prod
+  const cookieDomain = resolveCookieDomain(
+    typeof window !== 'undefined' ? window.location.hostname : '',
+    process.env.NEXT_PUBLIC_COOKIE_DOMAIN // '.amplecen.com' in prod
+  )
 
   return createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -12,7 +16,7 @@ export function createClient() {
             domain: cookieDomain,
             path: '/',
             sameSite: 'lax' as const,
-            secure: true,
+            secure: typeof window !== 'undefined' ? window.location.protocol === 'https:' : true,
           },
         }
       : undefined
