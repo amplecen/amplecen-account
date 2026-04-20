@@ -1,3 +1,7 @@
+function isAmplecenHostname(hostname: string): boolean {
+  return hostname === 'amplecen.com' || hostname.endsWith('.amplecen.com')
+}
+
 function sanitizeExplicitDomain(domain?: string): string | undefined {
   if (!domain) return undefined
   const trimmed = domain.trim()
@@ -5,22 +9,22 @@ function sanitizeExplicitDomain(domain?: string): string | undefined {
 
   // Allow URL-like env values (e.g. https://accounts.amplecen.com)
   // by extracting the hostname.
-  const normalizedInput = trimmed.replace(/\/+$/, '')
-  const withProtocol = /^https?:\/\//i.test(normalizedInput)
-    ? normalizedInput
-    : `https://${normalizedInput}`
+  const trimmedWithoutTrailingSlash = trimmed.replace(/\/+$/, '')
+  const withProtocol = /^https?:\/\//i.test(trimmedWithoutTrailingSlash)
+    ? trimmedWithoutTrailingSlash
+    : `https://${trimmedWithoutTrailingSlash}`
 
   try {
     const hostname = new URL(withProtocol).hostname.toLowerCase()
-    if (hostname === 'amplecen.com' || hostname.endsWith('.amplecen.com')) {
+    if (isAmplecenHostname(hostname)) {
       return '.amplecen.com'
     }
     return hostname
   } catch {
     // Fallback to plain domain-like strings without protocol.
-    const plain = normalizedInput.toLowerCase().replace(/:\d+$/, '')
+    const plain = trimmedWithoutTrailingSlash.toLowerCase().replace(/:\d+$/, '')
     if (!plain) return undefined
-    if (plain === 'amplecen.com' || plain.endsWith('.amplecen.com')) {
+    if (isAmplecenHostname(plain)) {
       return '.amplecen.com'
     }
     return plain
