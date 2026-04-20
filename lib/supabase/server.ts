@@ -1,22 +1,9 @@
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
-import { resolveCookieDomain } from './cookie-domain'
 
 export async function createClient() {
   const cookieStore = await cookies()
-  let appHostname = ''
-  if (process.env.NEXT_PUBLIC_APP_URL) {
-    try {
-      appHostname = new URL(process.env.NEXT_PUBLIC_APP_URL).hostname
-    } catch {
-      // Ignore invalid app URL and fall back to host-only cookies.
-      appHostname = ''
-    }
-  }
-  const cookieDomain = resolveCookieDomain(
-    appHostname,
-    process.env.COOKIE_DOMAIN || process.env.NEXT_PUBLIC_COOKIE_DOMAIN
-  )
+  const cookieDomain = process.env.COOKIE_DOMAIN
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
