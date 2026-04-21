@@ -79,39 +79,46 @@ export function ConnectionsList({ identities }: ConnectionsListProps) {
               return (
                 <div
                    key={identity.id}
-                   className="flex items-center justify-between p-4 rounded-xl glass-card border border-warm-white/5 group"
+                   className="flex items-center gap-3 p-4 rounded-xl glass-card border border-warm-white/5 group"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-midnight-light/20 flex items-center justify-center border border-haze/10">
-                      {meta.icon}
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold text-warm-white">{meta.label}</p>
-                      {identity.email && (
-                        <p className="text-xs text-haze-dim mt-0.5">{identity.email}</p>
-                      )}
-                    </div>
+                  {/* Icon */}
+                  <div className="w-10 h-10 rounded-xl bg-midnight-light/20 flex items-center justify-center border border-haze/10 flex-shrink-0">
+                    {meta.icon}
                   </div>
 
-                  {isOnlyIdentity ? (
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ember/5 text-[10px] font-bold uppercase tracking-widest text-ember border border-ember/20">
-                      <AlertTriangle className="w-3.5 h-3.5" />
-                      <span>Primary login</span>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => handleUnlink(identity)}
-                      disabled={isPending}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-haze-dim hover:text-red-400 hover:bg-red-500/10 transition-all duration-200 disabled:opacity-50 opacity-0 group-hover:opacity-100"
-                    >
-                      {isLoading ? (
-                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                      ) : (
-                        <Unlink className="w-3.5 h-3.5" />
-                      )}
-                      Disconnect
-                    </button>
-                   )}
+                  {/* Info — min-w-0 lets text truncate instead of pushing buttons off screen */}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold text-warm-white truncate">{meta.label}</p>
+                    {identity.email && (
+                      <p className="text-xs text-haze-dim mt-0.5 truncate">{identity.email}</p>
+                    )}
+                  </div>
+
+                  {/* Action — always visible on mobile, hover-only on desktop */}
+                  <div className="flex-shrink-0">
+                    {isOnlyIdentity ? (
+                      <div className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-ember/5 text-[10px] font-bold uppercase tracking-widest text-ember border border-ember/20 whitespace-nowrap">
+                        <AlertTriangle className="w-3 h-3" />
+                        <span className="hidden sm:inline">Primary</span>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => handleUnlink(identity)}
+                        disabled={isPending}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold
+                                   text-haze-dim hover:text-red-400 hover:bg-red-500/10
+                                   sm:opacity-0 sm:group-hover:opacity-100
+                                   transition-all duration-200 disabled:opacity-50 whitespace-nowrap"
+                      >
+                        {isLoading ? (
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        ) : (
+                          <Unlink className="w-3.5 h-3.5" />
+                        )}
+                        <span className="hidden sm:inline">Disconnect</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
               )
             })}

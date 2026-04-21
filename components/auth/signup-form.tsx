@@ -197,7 +197,7 @@ export function SignupForm({ returnTo }: SignupFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-ember-dim via-ember to-ember-bright text-ink font-bold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-ember/25 hover:brightness-110 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
+          className="btn-primary"
         >
           {loading ? (
             <Loader2 className="w-4 h-4 animate-spin" />

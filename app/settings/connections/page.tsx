@@ -23,16 +23,17 @@ export default async function ConnectionsPage({
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold text-white tracking-tight">Connected Accounts</h1>
-        <p className="text-sm text-zinc-500">
+        <h1 className="text-2xl font-display font-bold text-warm-white tracking-tight">Connected Accounts</h1>
+        <p className="text-sm text-haze-dim">
           Manage your linked sign-in providers
         </p>
       </div>
 
       {/* Just linked notification */}
       {justLinked && (
-        <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm animate-slide-up">
-          ✓ Successfully connected {justLinked.charAt(0).toUpperCase() + justLinked.slice(1)}
+        <div className="p-3 rounded-xl bg-sage/10 border border-sage/20 text-sage text-sm animate-slide-up flex items-center gap-2">
+          <span>✓</span>
+          Successfully connected {justLinked.charAt(0).toUpperCase() + justLinked.slice(1)}
         </div>
       )}
 
@@ -44,8 +45,8 @@ export default async function ConnectionsPage({
       <div className="glass-card p-4 flex items-start gap-3">
         <div className="flex-shrink-0 text-lg mt-0.5">🔒</div>
         <div className="space-y-1">
-          <p className="text-sm font-medium text-zinc-300">About connected accounts</p>
-          <p className="text-xs text-zinc-500 leading-relaxed">
+          <p className="text-sm font-bold text-warm-white/80">About connected accounts</p>
+          <p className="text-xs text-haze-dim leading-relaxed">
             Connected accounts let you sign in using different providers. You must always keep
             at least one sign-in method active. Connecting a provider doesn&apos;t give it access
             to your Amplecen data.

@@ -16,8 +16,8 @@ export default async function SecurityPage() {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold text-white tracking-tight">Security</h1>
-        <p className="text-sm text-zinc-500">
+        <h1 className="text-2xl font-display font-bold text-warm-white tracking-tight">Security</h1>
+        <p className="text-sm text-haze-dim">
           Manage your password and authentication methods
         </p>
       </div>
@@ -25,12 +25,12 @@ export default async function SecurityPage() {
       {/* Password section */}
       <div className="glass-card p-6 space-y-5">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
+          <div className="p-2.5 rounded-xl bg-ember/10 border border-ember/20 text-ember">
             <Shield className="w-4 h-4" />
           </div>
           <div>
-            <h2 className="text-sm font-semibold text-white">Change password</h2>
-            <p className="text-xs text-zinc-500">Update your password to keep your account secure</p>
+            <h2 className="text-sm font-bold text-warm-white">Change password</h2>
+            <p className="text-xs text-haze-dim">Update your password to keep your account secure</p>
           </div>
         </div>
         <PasswordForm />
@@ -38,28 +38,28 @@ export default async function SecurityPage() {
 
       {/* Future features */}
       <div className="space-y-3">
-        <div className="glass-card p-5 flex items-center gap-4 opacity-50">
-          <div className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.06] text-zinc-500">
+        <div className="glass-card p-5 flex items-center gap-4">
+          <div className="p-2.5 rounded-xl bg-midnight-light/20 border border-haze/10 text-haze-dim flex-shrink-0">
             <Fingerprint className="w-4 h-4" />
           </div>
-          <div className="flex-1">
-            <p className="text-sm font-medium text-zinc-400">Passkeys</p>
-            <p className="text-xs text-zinc-600">Sign in with biometrics or security keys</p>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-bold text-warm-white/60">Passkeys</p>
+            <p className="text-xs text-haze-dim/60">Sign in with biometrics or security keys</p>
           </div>
-          <span className="text-[10px] font-semibold text-zinc-600 uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.06]">
+          <span className="text-[10px] font-bold text-haze-dim/50 uppercase tracking-widest px-2.5 py-1 rounded-full bg-midnight-light/10 border border-haze/10 whitespace-nowrap flex-shrink-0">
             Coming soon
           </span>
         </div>
 
-        <div className="glass-card p-5 flex items-center gap-4 opacity-50">
-          <div className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.06] text-zinc-500">
+        <div className="glass-card p-5 flex items-center gap-4">
+          <div className="p-2.5 rounded-xl bg-midnight-light/20 border border-haze/10 text-haze-dim flex-shrink-0">
             <Smartphone className="w-4 h-4" />
           </div>
-          <div className="flex-1">
-            <p className="text-sm font-medium text-zinc-400">Two-factor authentication</p>
-            <p className="text-xs text-zinc-600">Add an extra layer of security with TOTP</p>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-bold text-warm-white/60">Two-factor authentication</p>
+            <p className="text-xs text-haze-dim/60">Add an extra layer of security with TOTP</p>
           </div>
-          <span className="text-[10px] font-semibold text-zinc-600 uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.06]">
+          <span className="text-[10px] font-bold text-haze-dim/50 uppercase tracking-widest px-2.5 py-1 rounded-full bg-midnight-light/10 border border-haze/10 whitespace-nowrap flex-shrink-0">
             Coming soon
           </span>
         </div>

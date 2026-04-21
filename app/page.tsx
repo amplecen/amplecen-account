@@ -1,6 +1,7 @@
 import { getUser, getUserIdentities } from '@/app/actions/auth'
 import { AmplecenLogo } from '@/components/amplecen-logo'
 import { SignOutButton } from '@/components/auth/signout-button'
+import { ThemeToggle } from '@/components/theme-toggle'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import {
@@ -51,18 +52,21 @@ export default async function AccountHub() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#06060a] relative">
+    <div className="min-h-screen relative">
       {/* Ambient background */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-[-30%] left-[-15%] w-[800px] h-[800px] bg-ember/[0.03] rounded-full blur-[160px]" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-midnight-light/[0.05] rounded-full blur-[140px]" />
+        <div className="ambient-blob absolute top-[-30%] left-[-15%] w-[800px] h-[800px] bg-ember/[0.035] rounded-full blur-[170px]" />
+        <div className="ambient-blob absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-midnight-light/[0.07] rounded-full blur-[150px]" style={{ animationDelay: '5s' }} />
       </div>
 
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-warm-white/[0.04] bg-midnight-deep/80 backdrop-blur-xl">
-        <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+      <header className="sticky top-0 z-50 border-b border-warm-white/[0.05] bg-midnight-deep/75 backdrop-blur-2xl">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <AmplecenLogo size="sm" />
-          <SignOutButton variant="ghost" />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <SignOutButton variant="ghost" />
+          </div>
         </div>
       </header>
 
